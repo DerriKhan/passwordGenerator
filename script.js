@@ -1,6 +1,5 @@
 var password = document.getElementById("password");
 // const array_name = [item1, item2, ...];
-var appendix = [];
 var upperCase = [
   "A",
   "B",
@@ -88,33 +87,38 @@ var specialChar = [
   "]",
 ];
 
-
-
 function generatePassword() {
-  var pwLength =
-  Number(prompt("Enter password length between 8 and 128 characters"));
-  if (8 <= pwLength && pwLength <= 128) {
-    console.log(pwLength);
+  var numChar = Number(prompt("Enter password length between 8 and 128 characters"));
+  if (8 <= numChar && numChar <= 128) {
     if (confirm("Should password include uppercase?") == true) {
-      appendix.push(upperCase);
+      var ups = (upperCase);
     }
   
     if (confirm("Should password include lowercase?") == true) {
-      appendix.push(lowerCase);
+      var downs = (lowerCase)
     }
   
     if (confirm("Should password include numbers?") == true) {
-      appendix.push(numbers);
+      var nums = (numbers);
     }
   
     if (confirm("Should password include special characters?") == true) {
-      appendix.push(specialChar);
+      var spec = (specialChar);
     }
   } else {
     alert("Password Must Be Between 8 and 128 Characters"); 
     }
+
+  var appendix = [].concat(ups, downs, nums, spec);
+  
+  var shuffle = appendix.sort(() => 0.5 - Math.random());
+  var pick = shuffle.slice(0, numChar);
+  console.log(pick);
+  var password = pick.join("");
+  return password;
 };
-console.log(appendix);
+
+
 
 
 // Assignment Code, DO NOT EDIT ANTHING  BELOW THIS LINE
